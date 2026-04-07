@@ -93,5 +93,134 @@ FROM
 	employees;
 
 
+-- =========== ORDER BY ============
+
+SELECT
+	last_name,
+	first_name,
+	salary
+FROM employees
+ORDER BY last_name;
+
+
+SELECT
+	last_name,
+	first_name,
+	salary
+FROM employees
+ORDER BY last_name DESC;
+
+
+SELECT
+	last_name,
+	first_name,
+	salary
+FROM employees
+ORDER BY salary, last_name;
+
+
+
+SELECT
+	last_name,
+	first_name
+FROM employees
+ORDER BY salary;
+
+
+
+
+-- ============= TOP ================
+
+-- Вернуть первых 3-х пользователей с наименьшей зарплатой
+-- :-(((
+SELECT TOP 3
+	id,
+	last_name,
+	first_name,
+	salary
+FROM employees
+ORDER BY salary;
+
+
+-- :-)))
+SELECT TOP 3
+	id,
+	last_name,
+	first_name,
+	salary
+FROM employees
+ORDER BY salary, id;
+
+
+
+-- Вернуть первых 2-х пользователей с наименьшей зарплатой
+-- :-(((
+SELECT TOP 2
+	id,
+	last_name,
+	first_name,
+	salary
+FROM employees
+ORDER BY salary;
+
+
+
+-- :-)))
+SELECT TOP 2 WITH TIES
+	id,
+	last_name,
+	first_name,
+	salary
+FROM employees
+ORDER BY salary;
+
+
+
+
+
+SELECT
+	first_name,
+	last_name
+FROM employees
+ORDER BY CONCAT(first_name, last_name);
+
+
+
+
+
+SELECT
+	CONCAT(first_name, last_name)   AS [full_name]
+FROM employees
+ORDER BY full_name
+
+
+
+
+SELECT DISTINCT
+	last_name,
+	first_name,
+	salary
+FROM employees
+ORDER BY last_name;
+
+
+
+
+
+SELECT
+	bonus_percent
+FROM employees
+ORDER BY ISNULL(bonus_percent, 1000);
+
+
+
+
+
+-- Выбрать 2 минимальные ЗП
+SELECT DISTINCT TOP 2
+	salary
+FROM employees
+ORDER BY salary
+
 
 
