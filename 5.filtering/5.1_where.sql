@@ -48,6 +48,53 @@ ORDER BY amount DESC;
 
 
 -- %	_	[abc]	[^abc]		[a-c]	[^a-c]
- SELECT id, name, salary
- FROM employees
- WHERE name LIKE N'Сид%'
+-- SELECT id, name, salary
+-- FROM employees
+-- -- WHERE name LIKE N'Сид%'
+-- -- WHERE last_name LIKE N'%ов';
+-- -- WHERE last_name LIKE N'%ре%';
+-- -- WHERE email LIKE '%.com';
+-- -- WHERE email LIKE '%.c__';
+-- -- WHERE email LIKE '%.[cbr]__';
+-- -- WHERE email LIKE '%.[^a-c]__';
+-- -- WHERE email LIKE '%.!%__' ESCAPE '!'
+ 
+--WHERE LOWER(email) LIKE '%.pro';				-- :-)
+
+
+
+
+
+-- ============= DATE / TIME functions =========== --
+
+DECLARE @year int = 1982;
+
+SELECT *
+FROM employees
+WHERE YEAR(birthday) = @year;
+
+
+-- Отобрать пользователей, у которых сегодня др
+DECLARE @now datetime = GETDATE();
+
+SELECT *
+FROM employees
+WHERE MONTH(birthday) = MONTH(@now) AND DAY(birthday) = DAY(@now);
+
+
+
+DECLARE @d date = '20260409';
+-- SELECT @d;
+SELECT DATEDIFF(year, @d, GETDATE());
+
+-- Вывести возраст служащих
+SELECT
+	id,
+	name,
+	DATEDIFF(year, birthday, GETDATE()) AS [age]
+FROM employees;
+
+
+
+SELECT CONVERT(DATE, '20260409', 104);
+
